@@ -1,5 +1,16 @@
 # ~/.config/starship.toml
 
+format="""$directory\
+$git_branch\
+$git_status\
+$nodejs\
+$rust\
+$golang\
+$php
+[$username](bg:white fg:#090c0c)\
+$cmd_duration \
+$character"""
+
 [battery]
 full_symbol = "🔋"
 charging_symbol = "🔌"
@@ -13,16 +24,22 @@ style = "bold red"
 error_symbol = "[✖](bold red) "
 
 [cmd_duration]
-min_time = 10_000  # Show command duration over 10,000 milliseconds (=10 sec)
-format = " took [$duration]($style)"
+min_time = 1_000  # Show command duration over 1,000 milliseconds (=1 sec)
+format = "⌛ [$duration]($style)"
 
 [directory]
 truncation_length = 5
-format = "[$path]($style)[$lock_symbol]($lock_style) "
+format = "[📁 $path ]($style)[$lock_symbol]($lock_style)"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
 
 [git_branch]
 format = "[$symbol$branch]($style) "
-symbol = "🍣 "
+symbol = " "
 style = "bold yellow"
 
 [git_commit]
@@ -71,6 +88,10 @@ disabled = true
 format = "[$symbol$version]($style) "
 style = "bold green"
 
+[conda]
+format = "[$symbol$version]($style) "
+style = "bold green"
+
 [rust]
 format = "[$symbol$version]($style) "
 style = "bold green"
@@ -84,6 +105,9 @@ disabled = false
 [username]
 style_user = "bold dimmed blue"
 show_always = true
+#style= "bg:#769ff0 fg:#a3aed2"
+format = "[$user]($style)"
+style_root = "bold red"
 
 
 [nodejs]
