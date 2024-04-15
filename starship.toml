@@ -1,6 +1,9 @@
 # ~/.config/starship.toml
 
 format="""
+[░▒▓](#a3aed2)\
+$username\
+[](bg:#769ff0 fg:#a3aed2)\
 $directory\
 [](fg:#769ff0 bg:#394260)\
 $git_branch\
@@ -15,8 +18,7 @@ $php\
 $time\
 $cmd_duration\
 [ ](fg:#1d2230)\
-\n$username \
-$character"""
+\n$character"""
 
 [battery]
 full_symbol = "🔋"
@@ -126,7 +128,7 @@ format = "[[$time](fg:#a0a9cb bg:#1d2230) ]($style)"
 disabled = false
 
 [username]
-style_user = "bold blue"
+style_user = "#090c0c"
+style_root = "#ba1d09"
 show_always = true
-format = "[$user]($style)"
-style_root = "bold red"
+format = "[[$user](bg:#a3aed2 fg:$style)]($style)"
