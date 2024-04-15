@@ -1,14 +1,21 @@
 # ~/.config/starship.toml
 
-format="""$directory\
+format="""
+$directory\
+[](fg:#769ff0 bg:#394260)\
 $git_branch\
-$git_status\
+$git_commit\
+$git_metrics\
+[](fg:#394260 bg:#212736)\
 $nodejs\
 $rust\
 $golang\
-$php
-[$username](bg:white fg:#090c0c)\
-$cmd_duration \
+$php\
+[](fg:#212736 bg:#1d2230)\
+$time\
+$cmd_duration\
+[ ](fg:#1d2230)\
+\n$username \
 $character"""
 
 [battery]
@@ -21,15 +28,18 @@ threshold = 50
 style = "bold red"
 
 [character]
-error_symbol = "[✖](bold red) "
+error_symbol = "❌ "
 
 [cmd_duration]
-min_time = 1_000  # Show command duration over 1,000 milliseconds (=1 sec)
-format = "⌛ [$duration]($style)"
+# min_time = 1_500  # Show command duration over 1,500 milliseconds (=1 sec)
+min_time = 1  
+style = "bg:#1d2230"
+format = "[⌛ [$duration](fg:#a0a9cb bg:#1d2230)]($style)"
 
 [directory]
 truncation_length = 5
-format = "[📁 $path ]($style)[$lock_symbol]($lock_style)"
+style = "fg:#e3e5e5 bg:#769ff0"
+format = "[📁 $path ]($style)[$lock_symbol]($style)"
 
 [directory.substitutions]
 "Documents" = "󰈙 "
@@ -38,16 +48,24 @@ format = "[📁 $path ]($style)[$lock_symbol]($lock_style)"
 "Pictures" = " "
 
 [git_branch]
-format = "[$symbol$branch]($style) "
-symbol = " "
-style = "bold yellow"
+format = "[$symbol $branch(:$remote_branch) ]($style)"
+symbol = ""
+style = "bg:#394260"
 
 [git_commit]
 commit_hash_length = 8
-style = "bold white"
+format = "[$tag]($style) "
+style = "bg:#394260"
 
 [git_state]
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
+style = "bg:#394260"
+
+[git_metrics]
+disabled = false
+added_style = "bold green bg:#394260"
+deleted_style = "bold red bg:#394260"
+format = "[([+$added]($added_style) )([-$deleted]($deleted_style) )](bg:#394260)"
 
 [git_status]
 conflicted = "⚔️ "
@@ -60,8 +78,8 @@ modified = "📝 ×${count}"
 staged = "🗃️  ×${count}"
 renamed = "📛 ×${count}"
 deleted = "🗑️  ×${count}"
-style = "bright-white"
-format = "$all_status$ahead_behind"
+style = "bg:#394260"
+format = "[$all_status$ahead_behind]($style)"
 
 [hostname]
 ssh_only = true
@@ -70,10 +88,6 @@ trim_at = "-"
 style = "bold dimmed blue"
 disabled = false
 
-[julia]
-format = "[$symbol$version]($style) "
-symbol = "ஃ "
-style = "bold green"
 
 [memory_usage]
 format = "$symbol[${ram}( | ${swap})]($style) "
@@ -81,34 +95,38 @@ threshold = 40
 style = "bold dimmed white"
 disabled = false
 
+
 [package]
 disabled = true
 
+[julia]
+style = "bg:#212736"
+format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)"
+
 [python]
-format = "[$symbol$version]($style) "
-style = "bold green"
+style = "bg:#212736"
+format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)"
 
 [conda]
-format = "[$symbol$version]($style) "
-style = "bold green"
+style = "bg:#212736"
+format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)"
 
 [rust]
-format = "[$symbol$version]($style) "
-style = "bold green"
+format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+style = "bg:#212736"
+
+[nodejs]
+style = "bg:#212736"
+format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)"
 
 [time]
 time_format = "%T"
-format = "$time($style) "
-style = "bright-white"
+style = "bg:#1d2230"
+format = "[[$time](fg:#a0a9cb bg:#1d2230) ]($style)"
 disabled = false
 
 [username]
-style_user = "bold dimmed blue"
+style_user = "bold blue"
 show_always = true
-#style= "bg:#769ff0 fg:#a3aed2"
 format = "[$user]($style)"
 style_root = "bold red"
-
-
-[nodejs]
-format = "[🤖 $version](bold green) "
