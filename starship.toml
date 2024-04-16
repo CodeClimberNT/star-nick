@@ -1,9 +1,10 @@
 # ~/.config/starship.toml
 
 format = """[╭─](#d3d7cf)[](#e4e4e4)\
-$battery\
+$hostname\
 $os\
 $username\
+$battery\
 [](fg:#e4e4e4 bg:#3465a4)\
 $directory\
 [](fg:#3465a4 bg:#394260)\
@@ -27,7 +28,7 @@ $memory_usage\
 full_symbol = "🔋"
 charging_symbol = "🔌"
 discharging_symbol = "⚡"
-format = '[[$symbol$percentage](bg:#a3aed2 fg:#090c0c)](#090c0c) '
+format = '[[$symbol$percentage](bg:#e4e4e4 fg:#000000)](#000000) '
 
 [[battery.display]]
 threshold = 10
@@ -41,7 +42,14 @@ style = "bold yellow"
 [os]
 disabled = false
 style = "#000000"
-format = "[[$symbol ](bg:#e4e4e4 fg:$style)]($style)"
+format = "[[$symbol](bg:#e4e4e4 fg:$style)]($style)"
+
+[hostname]
+ssh_only = true
+# trim_at = "-" #to reduce hostname length, personally i prefer to have the full name available
+style = "#000000"
+format = "[[💻 $hostname ](bg:#e4e4e4 fg:$style)]($style)"
+disabled = false
 
 [username]
 style_user = "#000000"
