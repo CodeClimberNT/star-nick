@@ -1,46 +1,58 @@
 # ~/.config/starship.toml
 
-format="""
-[░▒▓](#a3aed2)\
+format = """[╭─](#d3d7cf)[](#e4e4e4)\
+$battery\
+$os\
 $username\
-[](bg:#769ff0 fg:#a3aed2)\
+[](fg:#e4e4e4 bg:#3465a4)\
 $directory\
-[](fg:#769ff0 bg:#394260)\
+[](fg:#3465a4 bg:#394260)\
 $git_branch\
 $git_commit\
 $git_metrics\
-[](fg:#394260 bg:#212736)\
+[](fg:#394260 bg:#212736)\
 $nodejs\
 $rust\
 $golang\
 $php\
-[](fg:#212736 bg:#1d2230)\
+[](fg:#212736 bg:#1d2230)\
 $time\
 $cmd_duration\
-[ ](fg:#1d2230)\
-\n$character"""
+$memory_usage\
+[](#1d2230)\
+\n[╰─](#d3d7cf)$character"""
+
 
 [battery]
 full_symbol = "🔋"
 charging_symbol = "🔌"
 discharging_symbol = "⚡"
+format = '[[$symbol$percentage](bg:#a3aed2 fg:#090c0c)](#090c0c) '
 
 [[battery.display]]
-threshold = 50
+threshold = 10
 style = "bold red"
 
-[character]
-error_symbol = "❌ "
+[[battery.display]]
+threshold = 30
+style = "bold yellow"
 
-[cmd_duration]
-# min_time = 1_500  # Show command duration over 1,500 milliseconds (=1 sec)
-min_time = 1  
-style = "bg:#1d2230"
-format = "[⌛ [$duration](fg:#a0a9cb bg:#1d2230)]($style)"
+
+[os]
+disabled = false
+style = "#000000"
+format = "[[$symbol ](bg:#e4e4e4 fg:$style)]($style)"
+
+[username]
+style_user = "#000000"
+style_root = "#ba1d09"
+show_always = true
+format = "[[$user](bg:#e4e4e4 fg:$style)]($style)"
+
 
 [directory]
 truncation_length = 5
-style = "fg:#e3e5e5 bg:#769ff0"
+style = "fg:#e4e4e4 bg:#3465a4"
 format = "[📁 $path ]($style)[$lock_symbol]($style)"
 
 [directory.substitutions]
@@ -59,43 +71,11 @@ commit_hash_length = 8
 format = "[$tag]($style) "
 style = "bg:#394260"
 
-[git_state]
-format = '[\($state( $progress_current of $progress_total)\)]($style) '
-style = "bg:#394260"
-
 [git_metrics]
 disabled = false
 added_style = "bold green bg:#394260"
 deleted_style = "bold red bg:#394260"
-format = "[([+$added]($added_style) )([-$deleted]($deleted_style) )](bg:#394260)"
-
-[git_status]
-conflicted = "⚔️ "
-ahead = "🏎️ 💨 ×${count}"
-behind = "🐢 ×${count}"
-diverged = "🔱 🏎️ 💨 ×${ahead_count} 🐢 ×${behind_count}"
-untracked = "🛤️  ×${count}"
-stashed = "📦 "
-modified = "📝 ×${count}"
-staged = "🗃️  ×${count}"
-renamed = "📛 ×${count}"
-deleted = "🗑️  ×${count}"
-style = "bg:#394260"
-format = "[$all_status$ahead_behind]($style)"
-
-[hostname]
-ssh_only = true
-format = "<[$hostname]($style)>"
-trim_at = "-"
-style = "bold dimmed blue"
-disabled = false
-
-
-[memory_usage]
-format = "$symbol[${ram}( | ${swap})]($style) "
-threshold = 40
-style = "bold dimmed white"
-disabled = false
+format = "[([+$added]($added_style) )([-$deleted]($deleted_style))](bg:#394260)"
 
 
 [package]
@@ -121,14 +101,25 @@ style = "bg:#212736"
 style = "bg:#212736"
 format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)"
 
+
 [time]
 time_format = "%T"
 style = "bg:#1d2230"
 format = "[[$time](fg:#a0a9cb bg:#1d2230) ]($style)"
 disabled = false
 
-[username]
-style_user = "#090c0c"
-style_root = "#ba1d09"
-show_always = true
-format = "[[$user](bg:#a3aed2 fg:$style)]($style)"
+[cmd_duration]
+min_time = 1_500  # Show command duration over 1,500 milliseconds (=1 sec)
+# min_time = 0 # always enabled
+style = "bg:#1d2230"
+format = "[⌛ [$duration](fg:#a0a9cb bg:#1d2230)]($style)"
+
+[memory_usage]
+threshold = 40
+style = "bg:#1d2230"
+format = "[ $symbol[${ram}( | ${swap})](fg:#a0a9cb bg:#1d2230)]($style)"
+disabled = false
+
+[character]
+success_symbol = '[❯](#2898b5)'
+error_symbol = '[✗](bold red)'
