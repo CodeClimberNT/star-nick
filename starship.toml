@@ -32,7 +32,7 @@ format = "[[$symbol](bg:#2E5991 fg:$style)]($style)"
 
 [username]
 style_user = "#000000"
-style_root = "#ba1d09"
+style_root = "#CC7371"
 show_always = true
 format = "[[$user](bg:#2E5991 fg:$style)]($style)"
 
