@@ -1,34 +1,46 @@
 # ~/.config/starship.toml
 
-format = """[╭─](#d3d7cf)[](#e4e4e4)\
-$hostname\
+format = """[╭─](#d3d7cf)[](#2E5991)\
 $os\
 $username\
 $battery\
-[](fg:#e4e4e4 bg:#3465a4)\
+[](fg:#2E5991 bg:#254774)\
+$hostname\
+[](fg:#254774 bg:#3465a4)\
 $directory\
 [](fg:#3465a4 bg:#394260)\
 $git_branch\
 $git_commit\
 $git_metrics\
-[](fg:#394260 bg:#212736)\
+[](fg:#394260 bg:#1C3557)\
 $nodejs\
 $rust\
-$golang\
-$php\
-[](fg:#212736 bg:#1d2230)\
+$python\
+$conda\
+[](fg:#1C3557 bg:#12233A)\
 $time\
 $cmd_duration\
 $memory_usage\
-[](#1d2230)\
+[](#12233A)\
 \n[╰─](#d3d7cf)$character"""
 
+
+[os]
+disabled = false
+style = "#000000"
+format = "[[$symbol](bg:#2E5991 fg:$style)]($style)"
+
+[username]
+style_user = "#000000"
+style_root = "#ba1d09"
+show_always = true
+format = "[[$user](bg:#2E5991 fg:$style)]($style)"
 
 [battery]
 full_symbol = "🔋"
 charging_symbol = "🔌"
 discharging_symbol = "⚡"
-format = '[[$symbol$percentage](bg:#e4e4e4 fg:#000000)](#000000) '
+format = '[[$symbol$percentage](bg:#2E5991 fg:#000000)](#000000) '
 
 [[battery.display]]
 threshold = 10
@@ -38,25 +50,12 @@ style = "bold red"
 threshold = 30
 style = "bold yellow"
 
-
-[os]
-disabled = false
-style = "#000000"
-format = "[[$symbol](bg:#e4e4e4 fg:$style)]($style)"
-
 [hostname]
 ssh_only = true
 # trim_at = "-" #to reduce hostname length, personally i prefer to have the full name available
 style = "#000000"
-format = "[[💻 $hostname ](bg:#e4e4e4 fg:$style)]($style)"
+format = "[[💻 $hostname ](bg:#254774 fg:$style)]($style)"
 disabled = false
-
-[username]
-style_user = "#000000"
-style_root = "#ba1d09"
-show_always = true
-format = "[[$user](bg:#e4e4e4 fg:$style)]($style)"
-
 
 [directory]
 truncation_length = 5
@@ -90,44 +89,44 @@ format = "[([+$added]($added_style) )([-$deleted]($deleted_style))](bg:#394260)"
 disabled = true
 
 [julia]
-style = "bg:#212736"
-format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)"
+style = "bg:#1C3557"
+format = "[[ $symbol ($version) ](fg:#769ff0 bg:#1C3557)]($style)"
 
 [python]
-style = "bg:#212736"
-format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)"
+style = "bg:#1C3557"
+format = "[[ $symbol ($version) ](fg:#769ff0 bg:#1C3557)]($style)"
 
 [conda]
-style = "bg:#212736"
-format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)"
+style = "bg:#1C3557"
+format = "[[ $symbol ($version) ](fg:#769ff0 bg:#1C3557)]($style)"
 
 [rust]
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
-style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#769ff0 bg:#1C3557)]($style)'
+style = "bg:#1C3557"
 
 [nodejs]
-style = "bg:#212736"
-format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)"
+style = "bg:#1C3557"
+format = "[[ $symbol ($version) ](fg:#769ff0 bg:#1C3557)]($style)"
 
 
 [time]
 time_format = "%T"
-style = "bg:#1d2230"
-format = "[[$time](fg:#a0a9cb bg:#1d2230) ]($style)"
+style = "bg:#12233A"
+format = "[[$time](fg:#a0a9cb bg:#12233A) ]($style)"
 disabled = false
 
 [cmd_duration]
 min_time = 1_500  # Show command duration over 1,500 milliseconds (=1 sec)
 # min_time = 0 # always enabled
-style = "bg:#1d2230"
-format = "[⌛ [$duration](fg:#a0a9cb bg:#1d2230)]($style)"
+style = "bg:#12233A"
+format = "[⌛ [$duration](fg:#a0a9cb bg:#12233A)]($style)"
 
 [memory_usage]
 threshold = 40
-style = "bg:#1d2230"
-format = "[ $symbol[${ram}( | ${swap})](fg:#a0a9cb bg:#1d2230)]($style)"
+style = "bg:#12233A"
+format = "[ $symbol[${ram}( | ${swap})](fg:#a0a9cb bg:#12233A)]($style)"
 disabled = false
 
 [character]
-success_symbol = '[❯](#2898b5)'
+success_symbol = '[❯](#4A8FE8)'
 error_symbol = '[✗](bold red)'
