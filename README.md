@@ -1,2 +1,2 @@
-# starship-nick
+# star-nick
 Personal Starship TOML configuration
