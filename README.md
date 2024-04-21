@@ -1,2 +1,4 @@
 # starship-nick
-Personal Starship TOML configuration
+My personal Starship TOML configuration
+
+this file should be, by default, located in `~/.config/starship.toml`
